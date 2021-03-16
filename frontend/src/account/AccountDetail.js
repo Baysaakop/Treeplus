@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Popconfirm, Button, message, Row, Col, DatePicker, Typography } from 'antd';
 import { UserOutlined, EditOutlined, MobileOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import axios from 'axios';

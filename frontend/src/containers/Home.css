@@ -1,0 +1,12 @@
+.home-landscape {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.layout-light .home .home-landscape {
+    content: url('Wildlife.jpg');   
+}
+
+.layout-dark .home .home-landscape {
+    content: url('Night.jpg');
+}

@@ -1,199 +1,154 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Grid, Menu, Avatar, Dropdown } from 'antd';
+import { Button, Grid } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
-import { BellOutlined, CloseCircleOutlined, CloudOutlined, CoffeeOutlined, DownOutlined, EditOutlined, MailOutlined, MenuOutlined, QuestionCircleOutlined, UserOutlined } from '@ant-design/icons';
+import { CloudOutlined, MenuOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
-import logo from './onplus-logo.png';
-import axios from 'axios';
-import api from '../api';
-
-const { SubMenu, Item } = Menu;
+// import logo from './onplus-logo.png';
+// import axios from 'axios';
+// import api from '../api';
 const { useBreakpoint } = Grid;
 
-const styleHeaderWeb = {
-    display: 'flex',
-    justifyContent: 'space-around', 
-    alignItems: 'center',
-    padding: '0 15%',
-    height: '80px',    
-    boxShadow: '0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)'
-}
-
-const styleHeaderMobile = {
-    display: 'flex',
-    justifyContent: 'space-between', 
-    alignItems: 'center',
-    padding: '5%',
-    height: '80px',
-    boxShadow: '0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)'
-}
-
-const styleLogo = {
-    display: 'flex',
-    justifyContent: 'flex-start', 
-    alignItems: 'center',    
-    height: '80px'
-}
-
-const styleMenuWeb = {
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-    background: 'transparent'
-}
-
-const styleMenuMobile = {
-    width: '100%',    
-}
-
-const styleMenuItem = {    
-    marginRight: '8px',
-    color: '#fff'
-}
-
-const styleAccount = {
-    display: 'flex',
-    justifyContent: 'end', 
-    alignItems: 'center',    
-    height: '80px'
-}
-
 function CustomMenu (props) {    
-    const accountMenu = (
-        <Menu className="menu"  theme={props.darkMode ? "dark" : "light"} >
-            <Item key="profile" style={styleMenuItem} icon={<UserOutlined style={{ fontSize: '16px' }} />}>
-                <a href="/profile">Profile</a>                
-            </Item>
-            <Item key="notification" style={styleMenuItem} icon={<BellOutlined style={{ fontSize: '16px' }} />}>
-                <a href="/notification">Notification</a>
-            </Item> 
-            <Item key="newpost" style={styleMenuItem} icon={<EditOutlined style={{ fontSize: '16px' }} />}>
-                <a href="/newpost">New Post</a>
-            </Item>            
-            <Item key="logout" style={styleMenuItem} icon={<CloseCircleOutlined style={{ fontSize: '16px' }} />}>
-                <a href="/logout">Log Out</a>
-            </Item>            
-        </Menu>
-    )
-
-    const screens = useBreakpoint();
-    const [current, setCurrent] = useState('home');
+    const screens = useBreakpoint();    
     const [collapsed, setCollapsed] = useState(true);      
-    const [user, setUser] = useState();
+    // const [user, setUser] = useState();
 
     useEffect(() => {
-        const menuItem = props.location.pathname.toString().split('/')[1]
-        switch(menuItem) {
-            case '':
-                setCurrent('home')
-                break
-            case 'items':
-                setCurrent('items')
-                break
-            case 'help':
-                setCurrent('help')
-                break
-            case 'contact':
-                setCurrent('contact')
-                break
-            case 'account':
-                setCurrent('account')
-                break
-            default:
-                setCurrent('home')
-                break
-        }
-        if (props.token) {
-            if (!user) {
-                axios({
-                    method: 'GET',
-                    url: api.profile,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Token ${props.token}`
-                    }
-                }).then(res => {                    
-                    setUser(res.data)
-                }).catch(err => {
-                    console.log(err.message)
-                })
-            }
-        } else {
-            setUser(null)
-        }
-    }, [props.location, props.token, user]);
+        // const menuItem = props.location.pathname.toString().split('/')[1]
+        // switch(menuItem) {
+        //     case '':
+        //         setCurrent('home')
+        //         break
+        //     case 'items':
+        //         setCurrent('items')
+        //         break
+        //     case 'help':
+        //         setCurrent('help')
+        //         break
+        //     case 'contact':
+        //         setCurrent('contact')
+        //         break
+        //     case 'account':
+        //         setCurrent('account')
+        //         break
+        //     default:
+        //         setCurrent('home')
+        //         break
+        // }
+        // if (props.token) {
+        //     if (!user) {
+        //         axios({
+        //             method: 'GET',
+        //             url: api.profile,
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'Authorization': `Token ${props.token}`
+        //             }
+        //         }).then(res => {                    
+        //             setUser(res.data)
+        //         }).catch(err => {
+        //             console.log(err.message)
+        //         })
+        //     }
+        // } else {
+        //     setUser(null)
+        // }
+    }, [props.location, props.token]);
 
-    const handleMenuClick = (e) => {               
-        setCurrent(e.key);
-        setCollapsed(true);        
-    };
+    // const handleMenuClick = (e) => {               
+    //     setCurrent(e.key);
+    //     setCollapsed(true);        
+    // };
 
     const handleMenuCollapsed = () => {
         setCollapsed(!collapsed);
     }     
+
+    const styleHeaderWeb = {
+        display: 'flex',
+        justifyContent: 'space-around', 
+        alignItems: 'center',
+        padding: '0 15%',
+        height: '80px',    
+        boxShadow: '0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)'
+    }
+    
+    const styleHeaderMobile = {
+        display: 'flex',
+        justifyContent: 'space-between', 
+        alignItems: 'center',
+        paddingLeft: '5%',
+        paddingRight: '8%',
+        height: '80px',
+        boxShadow: '0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)'
+    }
+    
+    const styleLogo = {
+        display: 'flex',
+        justifyContent: 'flex-start', 
+        alignItems: 'center',    
+        height: '80px'
+    }    
+    
+    const styleMenuItemWeb = {    
+        marginRight: '8px'      
+    }
+
+    const styleMenuItemMobile = {    
+        width: '100%',
+        height: '25%',
+        margin: '0',
+        padding: '0',
+        alignItems: 'center'       
+    }    
 
     return (
         <div>              
             {screens.xs ? (
                 <div>
                     <div style={styleHeaderMobile}>
-                        <Link to="/">
-                            <div style={styleLogo}>         
-                                <div>
-                                    <Avatar size="large" src={logo} /> 
-                                </div>
-                                <div style={{ color: '#fff', fontSize: '24px', marginLeft: '8px' }}>                        
-                                    On Plus                        
-                                </div>                        
-                            </div>       
-                        </Link>
-                        <Button type="primary" onClick={handleMenuCollapsed} style={ props.darkMode ? { background: '#161b22', color: '#fff', border: '1px solid #fff' } : { background: '#fff', color: '#000', border: '1px solid #000' }}>
-                            <MenuOutlined />
-                        </Button>
-                    </div>
-                    <Menu 
-                        className="menu" 
-                        theme={props.darkMode ? "dark" : "light"} 
-                        mode="inline" 
-                        hidden={collapsed} 
-                        onClick={handleMenuClick}
-                        selectedKeys={[current]}
-                        style={styleMenuMobile}
-                    >                
-                        <Item key="items" icon={<CoffeeOutlined style={{ fontSize: '18px' }} />} style={styleMenuItem} >
-                            <Link to="/items">Items</Link>
-                        </Item>
-                        <Item key="help" icon={<QuestionCircleOutlined style={{ fontSize: '18px' }} />} style={styleMenuItem} >
-                            <Link to="/help">Help</Link>
-                        </Item>
-                        <Item key="contact" icon={<MailOutlined style={{ fontSize: '18px' }} />} style={styleMenuItem}>
-                            <Link to="/contact">Contact</Link>
-                        </Item>                   
-                        { user && user !== null ? (
-                            <SubMenu key="account" icon={<UserOutlined style={{ fontSize: '18px' }} />} style={styleMenuItem} title={user.username}>
-                                <Item key="profile" style={styleMenuItem} icon={<UserOutlined style={{ fontSize: '16px' }} />}>
-                                    <a href="/profile">Profile</a>                
-                                </Item>
-                                <Item key="notification" style={styleMenuItem} icon={<BellOutlined style={{ fontSize: '16px' }} />}>
-                                    <a href="/notification">Notification</a>
-                                </Item>
-                                <Item key="newpost" style={styleMenuItem} icon={<EditOutlined style={{ fontSize: '16px' }} />}>
-                                    <a href="/newpost">New Post</a>
-                                </Item>            
-                                <Item key="logout" style={styleMenuItem} icon={<CloseCircleOutlined style={{ fontSize: '16px' }} />}>
-                                    <a href="logout">Log Out</a>
-                                </Item>   
-                            </SubMenu> 
-                        ) : (
-                            <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '16px' }}>
-                                <Button href="/login" size="large" type="default" style={ props.darkMode ? { background: '#161b22', color: '#fff', fontSize: '18px', marginRight: '8px' } : { fontSize: '18px', marginRight: '8px' }}>Login</Button>
-                                <Button href="/signup" size="large" type="primary" style={{ fontSize: '18px' }}>Sign Up</Button>
-                            </div>
-                        ) }                                                                             
-                    </Menu>
+                        <div>
+                            <Link to="/">
+                                <div style={styleLogo}>         
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>                                        
+                                        <CloudOutlined style={{ fontSize: '24px', color: props.darkMode ? '#fff' : '#000' }} />
+                                    </div>
+                                    <div style={{ fontSize: '24px', marginLeft: '8px', color: props.darkMode ? '#fff' : '#000' }}>                        
+                                        TreePlus                        
+                                    </div>                        
+                                </div>       
+                            </Link>
+                        </div>
+                        <div>
+                            <Button 
+                                size="large"
+                                shape="circle" 
+                                type="primary" 
+                                icon={<MenuOutlined />} 
+                                onClick={handleMenuCollapsed} 
+                                style={ props.darkMode ? { background: 'transparent', color: '#fff', border: '1px solid #fff' } : { background: 'transparent', color: '#000', border: '1px solid #000' }} 
+                            />
+                        </div>        
+                    </div>   
+                    { collapsed ? (
+                        <></>
+                    ) : (
+                        <div style={{ width: '100%', height: '90vh', background: props.darkMode ? "#161b22" : "#fff" }}>                            
+                            <Button type="text" size="large" style={styleMenuItemMobile}>
+                                Trees
+                            </Button> 
+                            <Button type="text" size="large" style={styleMenuItemMobile}>
+                                News
+                            </Button>                            
+                            <Button type="text" size="large" style={styleMenuItemMobile}>
+                                Members
+                            </Button>
+                            <Button type="text" size="large" style={styleMenuItemMobile}>
+                                Sign In
+                            </Button>
+                        </div>
+                    )}                             
                 </div>
             ) : (
                 <div style={styleHeaderWeb}>
@@ -202,78 +157,30 @@ function CustomMenu (props) {
                             <div style={styleLogo}>         
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     {/* <Avatar size="large" src={logo} />  */}
-                                    <CloudOutlined style={{ fontSize: '24px', color: '#fff' }} />
+                                    <CloudOutlined style={{ fontSize: '24px', color: props.darkMode ? '#fff' : '#000' }} />
                                 </div>
-                                <div style={{ color: '#fff', fontSize: '24px', marginLeft: '8px' }}>                        
+                                <div style={{ fontSize: '24px', marginLeft: '8px', color: props.darkMode ? '#fff' : '#000' }}>                        
                                     TreePlus                        
                                 </div>                        
                             </div>       
                         </Link>
                     </div>
                     <div style={{ width: '60%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Button type="ghost" shape="round" size="large" style={styleMenuItem}>
+                        <Button type="ghost" shape="round" size="large" style={styleMenuItemWeb}>
                             Trees
                         </Button>
-                        <Button type="ghost" shape="round" size="large" style={styleMenuItem}>
+                        <Button type="ghost" shape="round" size="large" style={styleMenuItemWeb}>
                             News
                         </Button>
-                        <Button type="ghost" shape="round" size="large" style={styleMenuItem}>
+                        <Button type="ghost" shape="round" size="large" style={styleMenuItemWeb}>
                             Members
                         </Button>
                     </div>
                     <div style={{ width: '20%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                        <Button type="ghost" shape="round" size="large" style={styleMenuItem}>
+                        <Button type="ghost" shape="round" size="large">
                             Sign in
                         </Button>
-                    </div>
-                    {/* <div className="logo-section">
-                        <Link to="/">
-                            <div style={styleLogo}>         
-                                <div>
-                                    <Avatar size="large" src={logo} /> 
-                                </div>
-                                <div style={{ color: '#fff', fontSize: '24px', marginLeft: '8px' }}>                        
-                                    On Plus                        
-                                </div>                        
-                            </div>       
-                        </Link>
-                    </div>
-                    <div className="menu-items">
-                        <Button type="ghost" shape="round" size="large" style={styleMenuItem}>
-                            Trees
-                        </Button>
-                        <Button type="ghost" shape="round" size="large" style={styleMenuItem}>
-                            News
-                        </Button>
-                        <Button type="ghost" shape="round" size="large" style={styleMenuItem}>
-                            Members
-                        </Button>
-                    </div>
-                    <div style={styleAccount}>
-                        { user && user !== null ? (
-                            <div style={styleLogo}>
-                                <div>
-                                    { user.profile.avatar ? 
-                                        <Avatar src={user.profile.avatar} />
-                                    :
-                                        <Avatar icon={<UserOutlined />} />
-                                    }                                    
-                                </div>
-                                <div style={{ color: '#000', fontSize: '18px', marginLeft: '8px' }}>           
-                                    <Dropdown overlay={accountMenu} placement="bottomRight" trigger={['click']}>
-                                        <a href="/profile" className="ant-dropdown-link" style={{ color: props.darkMode ? '#fff' : '#000' }}>
-                                            {user.username} <DownOutlined />
-                                        </a>
-                                    </Dropdown>                                         
-                                </div>                                                    
-                            </div>
-                        ) : (
-                            <div>
-                                <Button href="/login" size="large" type="default" style={ props.darkMode ? { background: '#161b22', color: '#fff', fontSize: '18px', marginRight: '8px' } : { fontSize: '18px', marginRight: '8px' }}>Login</Button>
-                                <Button href="/signup" size="large" type="primary" style={{ fontSize: '18px' }}>Sign Up</Button>
-                            </div>
-                        ) }   
-                    </div> */}
+                    </div>                   
                 </div>
             )}                        
         </div>

@@ -1,66 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Button, Layout, Tooltip, Typography } from 'antd';
+import { Button, Layout, Tooltip } from 'antd';
 import CustomMenu from '../components/Menu';
-// import './Layout.css';
+import './Layout.css';
 import { BulbFilled, BulbOutlined, FacebookFilled, GithubFilled, InstagramOutlined, TwitterOutlined, YoutubeFilled } from '@ant-design/icons';
 
-const { useBreakpoint } = Grid;
 const { Header, Content, Footer } = Layout;
 
-const styleHeader = {
-    background: 'transparent',    
-    display: 'inline-block',
-    zIndex: '99', 
-    position: 'fixed',      
-    padding: '0',    
-    margin: '0',
-    height: '80px',
-    width: '100%',        
-}
-
-const styleContentWeb = {
-    padding: '0',
-    position: 'absolute',
-    marginBottom: '24px'    
-    // zIndex: '1',    
-    // position: 'relative',       
-    // margin: '0'     
-}
-
-const styleContentSwitch = {
-    position: 'fixed',
-    zIndex: '2',
-    top: '50%',
-    right: '8%'
-}
-
-const styleContentItemWeb = {
-    // padding: '24px 15%' 
-    padding: 0
-}
-
-const styleContentItemMobile = {
-    padding: '5%' 
-}
-
-const styleFooter = {    
-    padding: 0,            
-    background: '#fff',
-    color: '#000',
-    minHeight: '200px',
-    width: '100%',    
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',    
-}
-
-function CustomLayout (props) {    
-    const screens = useBreakpoint();
+function CustomLayout (props) {        
     const [darkMode, setDarkMode] = useState(getInitialMode());
+    const [scrollTop, setScrollTop] = useState(true);
 
     useEffect(() => {
         localStorage.setItem('dark', JSON.stringify(darkMode))
+        window.addEventListener('scroll', onScroll, true);
     }, [darkMode])
 
     function getInitialMode() {
@@ -82,30 +34,69 @@ function CustomLayout (props) {
         return window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
 
+    function onScroll() {        
+        if (window.scrollY > 0) {
+            setScrollTop(false)
+        } else {
+            setScrollTop(true)
+        }        
+    }
+
+    const styleHeader = {
+        background: scrollTop ? 'transparent' : '',    
+        display: 'inline-block',
+        zIndex: '99', 
+        position: 'fixed',      
+        padding: '0',    
+        margin: '0',
+        height: '80px',
+        width: '100%',        
+    }
+    
+    const styleContentSwitch = {
+        position: 'fixed',
+        zIndex: '2',
+        top: '50%',
+        right: '6%'
+    }
+    
+    const styleFooter = {    
+        background: darkMode ? '#161b22' : '#fff',    
+        color: darkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.85)',
+        padding: 0,                            
+        minHeight: '200px',
+        width: '100%',    
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',    
+    }
+
     return(
-        <Layout className={darkMode ? "layout-dark" : "layout-light"} style={{ padding: 0, margin: 0 }}>
+        <Layout className={darkMode ? "layout-dark" : "layout-light"} style={{ padding: 0, margin: 0 }} onScroll={onScroll}>
             <Header className="header" style={styleHeader}>
                 <CustomMenu {...props} darkMode={darkMode} />                
             </Header>
-            <Content className="content" style={styleContentWeb}>                                     
-                <div className="content-item">
-                    {props.children}                    
+            <Content className="content" style={{ padding: '0' }}>                                     
+                <div className="content-item">                    
+                    {props.children} 
                 </div>                
-                {/* <div className="theme-switch-container" style={styleContentSwitch}>
+                <div className="theme-switch-container" style={styleContentSwitch}>
                     <Tooltip title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}>
                         <Button 
                             type={darkMode ? "primary" : "default"}
                             shape="circle" 
                             size="large" 
                             icon={darkMode ? <BulbFilled /> : <BulbOutlined />} 
-                            onClick={() => setDarkMode(prevMode => !prevMode)}
+                            onClick={() => 
+                                setDarkMode(prevMode => !prevMode)                                
+                            }
                         />
                     </Tooltip>
-                </div> */}
+                </div>
             </Content>
-            <Footer className="footer" style={styleFooter}>
-                <Typography.Title level={3}>FOOTER</Typography.Title>
-                {/* <div>
+            <Footer className="footer" style={styleFooter}>                
+                <div>
                     <Tooltip title="Facebook">
                         <Button shape="circle" icon={<FacebookFilled />} style={{ margin: '8px' }} size="large" /> 
                     </Tooltip>
@@ -122,9 +113,9 @@ function CustomLayout (props) {
                         <Button shape="circle" icon={<GithubFilled />} style={{ margin: '8px' }} size="large" /> 
                     </Tooltip>
                     <p>
-                        © 2021 Django and React Project. All Rights Reserved. Designed and developed by On Plus Tech.
+                        © 2021 Tree Plus Project. All Rights Reserved. Designed and developed by On Plus Tech.
                     </p>
-                </div>                 */}
+                </div>                
             </Footer>
         </Layout>
     );  
