@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Button, Layout, Tooltip } from 'antd';
 import CustomMenu from '../components/Menu';
 import './Layout.css';
-import { BulbFilled, BulbOutlined, FacebookFilled, GithubFilled, InstagramOutlined, TwitterOutlined, YoutubeFilled } from '@ant-design/icons';
+import { FacebookFilled, GithubFilled, InstagramOutlined, TwitterOutlined, YoutubeFilled } from '@ant-design/icons';
+import SunIcon from './SunIcon';
+import MoonIcon from './MoonIcon';
 
 const { Header, Content, Footer } = Layout;
 
@@ -73,21 +75,22 @@ function CustomLayout (props) {
     }
 
     return(
-        <Layout className={darkMode ? "layout-dark" : "layout-light"} style={{ padding: 0, margin: 0 }} onScroll={onScroll}>
+        <Layout className={darkMode ? "layout-dark" : "layout-light"} style={{ padding: 0, margin: 0, width: '100%' }} onScroll={onScroll}>
             <Header className="header" style={styleHeader}>
                 <CustomMenu {...props} darkMode={darkMode} />                
             </Header>
-            <Content className="content" style={{ padding: '0' }}>                                     
-                <div className="content-item">                    
+            <Content className="content" style={{ padding: '0', margin: '0', width: '100%' }}>                                     
+                <div className="content-item" style={{ padding: '0', margin: '0', width: '100%' }}>                    
                     {props.children} 
                 </div>                
                 <div className="theme-switch-container" style={styleContentSwitch}>
-                    <Tooltip title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}>
+                    <Tooltip title={darkMode ? "Switch to Day Mode" : "Switch to Night Mode"}>
                         <Button 
-                            type={darkMode ? "primary" : "default"}
-                            shape="circle" 
-                            size="large" 
-                            icon={darkMode ? <BulbFilled /> : <BulbOutlined />} 
+                            type={darkMode ? "primary" : "default"}                
+                            size="large"
+                            shape="circle"                         
+                            style={{ background: 'rgba(0, 0, 0, 0.5)' }}                
+                            icon={darkMode ? <MoonIcon style={{ color: '#F4F1C9' }} /> : <SunIcon style={{ color: '#FFD347' }} />} 
                             onClick={() => 
                                 setDarkMode(prevMode => !prevMode)                                
                             }

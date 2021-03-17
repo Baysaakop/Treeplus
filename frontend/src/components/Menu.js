@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Grid } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
-import { CloudOutlined, MenuOutlined } from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
+import TreeIcon from './TreeIcon';
 // import logo from './onplus-logo.png';
 // import axios from 'axios';
 // import api from '../api';
@@ -11,55 +12,7 @@ const { useBreakpoint } = Grid;
 
 function CustomMenu (props) {    
     const screens = useBreakpoint();    
-    const [collapsed, setCollapsed] = useState(true);      
-    // const [user, setUser] = useState();
-
-    useEffect(() => {
-        // const menuItem = props.location.pathname.toString().split('/')[1]
-        // switch(menuItem) {
-        //     case '':
-        //         setCurrent('home')
-        //         break
-        //     case 'items':
-        //         setCurrent('items')
-        //         break
-        //     case 'help':
-        //         setCurrent('help')
-        //         break
-        //     case 'contact':
-        //         setCurrent('contact')
-        //         break
-        //     case 'account':
-        //         setCurrent('account')
-        //         break
-        //     default:
-        //         setCurrent('home')
-        //         break
-        // }
-        // if (props.token) {
-        //     if (!user) {
-        //         axios({
-        //             method: 'GET',
-        //             url: api.profile,
-        //             headers: {
-        //                 'Content-Type': 'application/json',
-        //                 'Authorization': `Token ${props.token}`
-        //             }
-        //         }).then(res => {                    
-        //             setUser(res.data)
-        //         }).catch(err => {
-        //             console.log(err.message)
-        //         })
-        //     }
-        // } else {
-        //     setUser(null)
-        // }
-    }, [props.location, props.token]);
-
-    // const handleMenuClick = (e) => {               
-    //     setCurrent(e.key);
-    //     setCollapsed(true);        
-    // };
+    const [collapsed, setCollapsed] = useState(true);          
 
     const handleMenuCollapsed = () => {
         setCollapsed(!collapsed);
@@ -112,10 +65,10 @@ function CustomMenu (props) {
                             <Link to="/">
                                 <div style={styleLogo}>         
                                     <div style={{ display: 'flex', alignItems: 'center' }}>                                        
-                                        <CloudOutlined style={{ fontSize: '24px', color: props.darkMode ? '#fff' : '#000' }} />
+                                        <TreeIcon style={{ fontSize: '24px', color: props.darkMode ? '#fff' : '#000' }} />
                                     </div>
                                     <div style={{ fontSize: '24px', marginLeft: '8px', color: props.darkMode ? '#fff' : '#000' }}>                        
-                                        TreePlus                        
+                                        Tree+                        
                                     </div>                        
                                 </div>       
                             </Link>
@@ -155,30 +108,29 @@ function CustomMenu (props) {
                     <div style={{ width: '20%', height: '100%', display: 'flex', alignItems: 'center' }}>
                         <Link to="/">
                             <div style={styleLogo}>         
-                                <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    {/* <Avatar size="large" src={logo} />  */}
-                                    <CloudOutlined style={{ fontSize: '24px', color: props.darkMode ? '#fff' : '#000' }} />
+                                <div style={{ display: 'flex', alignItems: 'center' }}>                                    
+                                    <TreeIcon style={{ fontSize: '24px', color: props.darkMode ? '#fff' : '#000' }} />
                                 </div>
                                 <div style={{ fontSize: '24px', marginLeft: '8px', color: props.darkMode ? '#fff' : '#000' }}>                        
-                                    TreePlus                        
+                                    TREE+                    
                                 </div>                        
                             </div>       
                         </Link>
                     </div>
                     <div style={{ width: '60%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Button type="ghost" shape="round" size="large" style={styleMenuItemWeb}>
-                            Trees
+                            Мод
                         </Button>
                         <Button type="ghost" shape="round" size="large" style={styleMenuItemWeb}>
-                            News
+                            Төслүүд
                         </Button>
                         <Button type="ghost" shape="round" size="large" style={styleMenuItemWeb}>
-                            Members
+                            Гишүүд
                         </Button>
                     </div>
                     <div style={{ width: '20%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
                         <Button type="ghost" shape="round" size="large">
-                            Sign in
+                            Нэвтрэх
                         </Button>
                     </div>                   
                 </div>

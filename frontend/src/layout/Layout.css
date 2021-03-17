@@ -1,8 +1,14 @@
 body {
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-width: 400px;    
+    height: 100%;
 }
 
-.footer {    
+/* .footer {    
+    margin-top: 32px;
     padding: 0;                           
     min-height: 200px;
     width: 100%;    
@@ -10,7 +16,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center; 
-}
+} */
 
 .layout-light {
     background-color: #f0f2f5;
@@ -24,14 +30,22 @@ body {
 
 .layout-light .header,
 .layout-light .header .ant-btn-text
-.layout-light .ant-btn-circle {
+.layout-light .ant-btn-circle,
+.layout-light .ant-card,
+.layout-light .ant-pagination-item,
+.layout-light .ant-pagination-item a,
+.layout-light .ant-pagination-item-link {
     background: #fff;
     color:  rgba(0, 0, 0, 0.85);
 }
 
 .layout-dark .header,
 .layout-dark .header .ant-btn-text,
-.layout-dark .footer .ant-btn-circle {
+.layout-dark .footer .ant-btn-circle,
+.layout-dark .ant-card,
+.layout-dark .ant-pagination-item,
+.layout-dark .ant-pagination-item a,
+.layout-dark .ant-pagination-item-link {
     background-color: #161b22;
     color: rgba(255, 255, 255, 0.85);
 }
@@ -47,15 +61,29 @@ body {
 }
 
 .layout-light .ant-btn-ghost:hover {
-    color: #000080	;
-    border-color:#000080;
-    background:rgba(0, 0, 128, 0.25);
+    /* color: green;
+    border-color: green; */
+    background:rgba(38, 194, 129, 0.5);
 }
 
 .layout-dark .ant-btn-ghost:hover {
-    color: #1890ff;
-    border-color:#1890ff;
-    background:rgba(24, 144, 255, 0.25);
+    /* color: green;
+    border-color: green; */
+    background: green;
+}
+
+.layout-light .ant-typography,
+.layout-light .ant-card-meta-title,
+.layout-light .ant-card-meta-description,
+.layout-light .ant-card-head-title {    
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.layout-dark .ant-typography,
+.layout-dark .ant-card-meta-title,
+.layout-dark .ant-card-meta-description,
+.layout-dark .ant-card-head-title {
+    color: rgba(255, 255, 255, 0.85);
 }
 
 /* .ant-btn-ghost:hover {
