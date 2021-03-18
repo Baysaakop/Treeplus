@@ -6,6 +6,8 @@ import TreeCountOrder from '../tree/TreeCountOrder';
 import TreeList from '../tree/TreeList';
 import ProjectList from '../project/ProjectList';
 import Leaderboard from '../account/Leaderboard';
+// import Greenzone1 from './images/Greenzone1.svg';
+import Greenzone2 from './images/Greenzone2.svg';
 // import axios from 'axios';  
 // import api from '../api';
 // import { Link } from 'react-router-dom';
@@ -60,7 +62,10 @@ function Home (props) {
                         <Leaderboard /> 
                     </Col>
                 </Row>
-            </div>            
+            </div>    
+            <div style={{ margin: '0 15% 5% 15%' , display: 'flex', justifyContent: 'center'}}>        
+                <img src={Greenzone2} alt="Greenzone2" style={{ width: 'auto', height: '400px', overflow: 'auto'  }} />
+            </div> 
         </div>
     )
 }
