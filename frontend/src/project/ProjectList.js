@@ -71,7 +71,7 @@ function ProjectList () {
                                 <Col span={12} style={{ textAlign: 'right' }}>
                                     <Typography.Title level={5}>Төлөв</Typography.Title>
                                     { item.done === true ? (
-                                        <Tag icon={<CheckCircleOutlined />} color="success" style={{ fontSize: '14px', padding: '8px' }}>Амжилттай</Tag>
+                                        <Tag icon={<CheckCircleOutlined />} color="success" style={{ fontSize: '14px', padding: '8px' }}>Биелсэн</Tag>
                                     ) : (
                                         <Tag icon={<SyncOutlined />} color="processing" style={{ fontSize: '14px', padding: '8px' }}>{item.process}</Tag>
                                     )}
